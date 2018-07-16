@@ -11,7 +11,68 @@
 #import "PTHotKeyCenter.h"
 #import "PTKeyCombo.h"
 
+/*!
+ Converts cocoa modifier flags to carbon.
+ */
+FOUNDATION_STATIC_INLINE UInt32 _SRCocoaToCarbonFlags(NSEventModifierFlags aCocoaFlags)
+{
+	UInt32 carbonFlags = 0;
+	
+	if (aCocoaFlags & NSEventModifierFlagCommand)
+		carbonFlags |= cmdKey;
+	
+	if (aCocoaFlags & NSEventModifierFlagOption)
+		carbonFlags |= optionKey;
+	
+	if (aCocoaFlags & NSEventModifierFlagControl)
+		carbonFlags |= controlKey;
+	
+	if (aCocoaFlags & NSEventModifierFlagShift)
+		carbonFlags |= shiftKey;
+	
+	return carbonFlags;
+}
+
+
 @implementation PTHotKey
+
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction
+{
+	return [PTHotKey hotKeyWithIdentifier:anIdentifier keyCombo:aKeyCombo target:aTarget action:anAction withObject:nil];
+}
+
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction
+						withObject:(id)anObject
+{
+	NSInteger keyCode = [[aKeyCombo objectForKey:@"keyCode"] integerValue];
+	NSUInteger modifiers = _SRCocoaToCarbonFlags([[aKeyCombo objectForKey:@"modifierFlags"] unsignedIntegerValue]);
+	PTKeyCombo *newKeyCombo = [[PTKeyCombo alloc] initWithKeyCode:keyCode modifiers:modifiers];
+	PTHotKey *newHotKey = [[PTHotKey alloc] initWithIdentifier:anIdentifier keyCombo:newKeyCombo];
+	[newHotKey setTarget:aTarget];
+	[newHotKey setAction:anAction];
+	[newHotKey setObject:anObject];
+	return newHotKey;
+}
+
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction
+					   keyUpAction:(SEL)aKeyUpAction
+{
+	PTHotKey *newHotKey = [PTHotKey hotKeyWithIdentifier:anIdentifier
+												keyCombo:aKeyCombo
+												  target:aTarget
+												  action:anAction];
+	[newHotKey setKeyUpAction:aKeyUpAction];
+	return newHotKey;
+}
 
 - (id)init
 {

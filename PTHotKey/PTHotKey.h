@@ -33,6 +33,23 @@
 	EventHotKeyRef	mCarbonEventHotKeyRef;
 }
 
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction;
+
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction
+					   keyUpAction:(SEL)aKeyUpAction;
+
++ (PTHotKey *)hotKeyWithIdentifier:(id)anIdentifier
+						  keyCombo:(NSDictionary *)aKeyCombo
+							target:(id)aTarget
+							action:(SEL)anAction
+						withObject:(id)anObject;
+
 - (id)initWithIdentifier: (id)identifier keyCombo: (PTKeyCombo*)combo;
 - (id)initWithIdentifier: (id)identifier keyCombo: (PTKeyCombo*)combo withObject: (id)object;
 - (id)init;

@@ -54,8 +54,6 @@
 		E2BE924E16ABEFE400827E8C /* SRKeyEquivalentTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE924C16ABEFE400827E8C /* SRKeyEquivalentTransformer.m */; };
 		E2BE925216ABF84200827E8C /* SRKeyEquivalentModifierMaskTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = E2BE925016ABF84100827E8C /* SRKeyEquivalentModifierMaskTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2BE925316ABF84200827E8C /* SRKeyEquivalentModifierMaskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE925116ABF84200827E8C /* SRKeyEquivalentModifierMaskTransformer.m */; };
-		E2BE927C16AC052000827E8C /* PTHotKey+ShortcutRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = E279508E131A7498008AE1DA /* PTHotKey+ShortcutRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2BE927D16AC052600827E8C /* PTHotKey+ShortcutRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = E279508F131A7498008AE1DA /* PTHotKey+ShortcutRecorder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -148,8 +146,6 @@
 		E2741ADE1673C83800A139BD /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		E2741AE01673C90B00A139BD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E2741AE81673CCBA00A139BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Library/Info.plist; sourceTree = "<group>"; };
-		E279508E131A7498008AE1DA /* PTHotKey+ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PTHotKey+ShortcutRecorder.h"; sourceTree = "<group>"; };
-		E279508F131A7498008AE1DA /* PTHotKey+ShortcutRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PTHotKey+ShortcutRecorder.m"; sourceTree = "<group>"; };
 		E28113AB167B8A9D001E118E /* SRModifierFlagsTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRModifierFlagsTransformer.h; path = Library/SRModifierFlagsTransformer.h; sourceTree = "<group>"; };
 		E28113AC167B8A9D001E118E /* SRModifierFlagsTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRModifierFlagsTransformer.m; path = Library/SRModifierFlagsTransformer.m; sourceTree = "<group>"; };
 		E2BE924B16ABEFE400827E8C /* SRKeyEquivalentTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRKeyEquivalentTransformer.h; path = Library/SRKeyEquivalentTransformer.h; sourceTree = "<group>"; };
@@ -338,8 +334,6 @@
 				A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */,
 				0B8E2A0709CDBADE0085E9ED /* PTKeyCombo.h */,
 				0B8E2A0809CDBADE0085E9ED /* PTKeyCombo.m */,
-				E279508E131A7498008AE1DA /* PTHotKey+ShortcutRecorder.h */,
-				E279508F131A7498008AE1DA /* PTHotKey+ShortcutRecorder.m */,
 			);
 			path = PTHotKey;
 			sourceTree = SOURCE_ROOT;
@@ -370,7 +364,6 @@
 				E273123B1349EDB500A84433 /* PTHotKeyCenter.h in Headers */,
 				E273123C1349EDB500A84433 /* PTKeyCodeTranslator.h in Headers */,
 				E273123D1349EDB500A84433 /* PTKeyCombo.h in Headers */,
-				E2BE927C16AC052000827E8C /* PTHotKey+ShortcutRecorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +540,6 @@
 				E27312411349EDCA00A84433 /* PTHotKeyCenter.m in Sources */,
 				E27312421349EDCA00A84433 /* PTKeyCodeTranslator.m in Sources */,
 				E27312431349EDCA00A84433 /* PTKeyCombo.m in Sources */,
-				E2BE927D16AC052600827E8C /* PTHotKey+ShortcutRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
