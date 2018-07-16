@@ -12,6 +12,13 @@
 #import <Carbon/Carbon.h>
 #import "PTKeyCombo.h"
 
+// Workaround for missing Headers in Framework-Umbrella Header:
+// We import all headers of the PTHotKey framework here even that they are not necessary here
+#import "PTHotKeyCenter.h"
+#import "PTKeyCodeTranslator.h"
+#import "PTKeyCombo.h"
+// End-Workaround
+
 @interface PTHotKey : NSObject
 {
 	NSString*		mIdentifier;
