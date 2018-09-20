@@ -369,6 +369,15 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     }
 }
 
+- (NSRect)boinx_rightCornerButtonRect
+{
+	NSRect bounds = self.bounds;
+
+	bounds.origin.x = bounds.origin.x + bounds.size.width - bounds.size.height;
+	bounds.size.width = bounds.size.height;
+	
+	return bounds;
+}
 
 #pragma mark -
 
@@ -1210,6 +1219,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 
     NSPoint locationInView = [self convertPoint:anEvent.locationInWindow fromView:nil];
 
+#if 0
     if (self.isRecording)
     {
         if ([self mouse:locationInView inRect:self.snapBackButtonRect])
@@ -1232,6 +1242,38 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     }
     else
         [super mouseDown:anEvent];
+#else
+	// Boinx Implementation:
+
+	if (self.isRecording)
+	{
+		if ([self mouse:locationInView inRect:self.boinx_rightCornerButtonRect])
+		{
+			_mouseTrackingButtonTag = _SRRecorderControlSnapBackButtonTag;
+			[self setNeedsDisplayInRect:self.snapBackButtonRect];
+		}
+		else
+			[super mouseDown:anEvent];
+	}
+	else
+	{
+		if ([self mouse:locationInView inRect:self.boinx_rightCornerButtonRect] && ((NSNumber*)(self.objectValue[SRShortcutKeyCode])).integerValue > 0)
+		{
+			_mouseTrackingButtonTag = _SRRecorderControlClearButtonTag;
+			[self setNeedsDisplayInRect:self.snapBackButtonRect];
+		}
+		else if ([self mouse:locationInView inRect:self.bounds])
+		{
+			_mouseTrackingButtonTag = _SRRecorderControlMainButtonTag;
+			[self setNeedsDisplay:YES];
+		}
+		else
+		{
+			[super mouseDown:anEvent];
+		}
+	}
+
+#endif
 }
 
 - (void)mouseUp:(NSEvent *)anEvent
@@ -1254,6 +1296,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
         {
             NSPoint locationInView = [self convertPoint:anEvent.locationInWindow fromView:nil];
 
+#if 0
             if (_mouseTrackingButtonTag == _SRRecorderControlMainButtonTag &&
                 [self mouse:locationInView inRect:self.bounds])
             {
@@ -1269,6 +1312,25 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
             {
                 [self clearAndEndRecording];
             }
+#else
+			// Boinx Implementation:
+			if (_mouseTrackingButtonTag == _SRRecorderControlMainButtonTag &&
+				[self mouse:locationInView inRect:self.bounds])
+			{
+				[self beginRecording];
+			}
+			else if (_mouseTrackingButtonTag == _SRRecorderControlSnapBackButtonTag &&
+					 [self mouse:locationInView inRect:self.boinx_rightCornerButtonRect])
+			{
+				[self endRecording];
+			}
+			else if (_mouseTrackingButtonTag == _SRRecorderControlClearButtonTag &&
+					 [self mouse:locationInView inRect:self.boinx_rightCornerButtonRect])
+			{
+				[self beginRecording];
+				[self clearAndEndRecording];
+			}
+#endif
         }
 
         _mouseTrackingButtonTag = _SRRecorderControlInvalidButtonTag;
