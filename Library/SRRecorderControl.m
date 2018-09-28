@@ -395,14 +395,25 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
             label = self.stringValue;
 
         if (!label.length)
+#if 0
             label = SRLoc(@"Type shortcut");
+#else
+			// Boinx Implementation:
+			label = SRLoc(@"Type Shortcut");
+#endif
+
     }
     else
     {
         label = self.stringValue;
 
         if (!label.length)
-            label = SRLoc(@"Click to record shortcut");
+#if 0
+			label = SRLoc(@"Click to record shortcut");
+#else
+			// Boinx Implementation:
+			label = SRLoc(@"Record Shortcut");
+#endif
     }
 
     return label;
@@ -1041,6 +1052,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     });
 }
 
+#if 0
 - (void)drawRect:(NSRect)aDirtyRect
 {
     [self drawBackground:aDirtyRect];
@@ -1057,7 +1069,222 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
         }
     }
 }
+#else
+// Boinx Implementation:
 
+- (void)drawRect:(NSRect)aDirtyRect
+{
+	[self drawBackground:aDirtyRect];
+
+	NSView *view = self.superview;
+
+	//BOOL isActive = ([NSApp isActive] && [[view window] isMainWindow]);
+	
+	NSRect bounds = self.bounds;
+	
+	CGFloat width = bounds.size.width;
+	CGFloat height = bounds.size.height;
+	
+	//// Variable Declarations
+	CGFloat smallerLabelWidth = width - height;
+	
+	BOOL isRecording = self.isRecording;
+	BOOL isEmpty = [self _isEmpty];
+	
+	
+	// Empty State
+	if (!isRecording && isEmpty)
+	{
+		//// RecordLabel Drawing
+		{
+			NSString* textContent = @"Record Shortcut";
+			NSMutableParagraphStyle* recordLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
+			recordLabelStyle.alignment = NSCenterTextAlignment;
+			
+			
+			NSFont* font = [NSFont systemFontOfSize:NSFont.systemFontSize-(bounds.size.width > 100 ? 2 : 4)];
+			
+			NSDictionary* recordLabelFontAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName:NSColor.controlTextColor, NSParagraphStyleAttributeName: recordLabelStyle};
+			
+			NSAttributedString *title = [[NSAttributedString alloc] initWithString:textContent attributes:recordLabelFontAttributes];
+			[title drawInRect:[self titleRectForBounds:bounds title:title]];
+		}
+	}
+	
+	
+	// Recording State
+	if (isRecording)
+	{
+		//// RecordingLabel Drawing
+		{
+			NSString* textContent = SRLoc(@"Type Shortcut");
+			NSMutableParagraphStyle* recordingLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
+			recordingLabelStyle.alignment = NSCenterTextAlignment;
+			
+			NSFont* font = [NSFont systemFontOfSize:NSFont.systemFontSize-(bounds.size.width > 100 ? 2 : 4)];
+			
+			NSDictionary* recordingLabelFontAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName:NSColor.controlTextColor, NSParagraphStyleAttributeName: recordingLabelStyle};
+			
+			
+			NSAttributedString *title = [[NSAttributedString alloc] initWithString:textContent attributes:recordingLabelFontAttributes];
+			[title drawInRect:[self titleRectForBounds:bounds title:title]];
+		}
+		
+		{
+			//// Back Button
+			double scaleFactor = 0.6;
+			double size = height * scaleFactor;
+			double indent = (height - size) / 2;
+			NSRect backRect = NSMakeRect(smallerLabelWidth+indent, indent, size, size);
+			
+			
+			double startAngle = -115;
+			double endAngle = 125;
+			NSPoint circleOrigin = NSMakePoint(NSMidX(backRect), NSMidY(backRect));
+			double radius = NSWidth(backRect)/2;
+			NSColor *themeColorForText = NSColor.controlTextColor;
+			
+			//// Oval Drawing
+			{
+				
+				NSBezierPath* ovalPath = NSBezierPath.bezierPath;
+				[ovalPath appendBezierPathWithArcWithCenter:circleOrigin radius:radius startAngle:startAngle endAngle:endAngle clockwise:NO];
+				
+				[themeColorForText setStroke];
+				[ovalPath setLineWidth: 1];
+				[ovalPath stroke];
+			}
+			
+			
+			//// Triangle Drawing
+			{
+				double vectorScale = height / 35;
+				
+				NSPoint vectorA = NSMakePoint(-1.5*vectorScale, -2.0*vectorScale);
+				NSPoint vectorB = NSMakePoint(-1.0*vectorScale, 4.0*vectorScale);
+				NSPoint vectorC = NSMakePoint(4.0*vectorScale, 0.0*vectorScale);
+				
+				NSPoint triangleOrigin = NSMakePoint(circleOrigin.x + radius*cos(startAngle/180*M_PI), circleOrigin.y + radius*sin(startAngle/180 * M_PI));
+				
+				NSPoint pointA = NSMakePoint(triangleOrigin.x + vectorA.x, triangleOrigin.y + vectorA.y);
+				NSPoint pointB = NSMakePoint(pointA.x + vectorB.x, pointA.y + vectorB.y);
+				NSPoint pointC = NSMakePoint(pointB.x + vectorC.x, pointB.y + vectorC.y);
+				
+				NSBezierPath* bezierPath = NSBezierPath.bezierPath;
+				[bezierPath moveToPoint: triangleOrigin];
+				[bezierPath lineToPoint: pointA];
+				[bezierPath lineToPoint: pointB];
+				[bezierPath lineToPoint: pointC];
+				[bezierPath closePath];
+				[themeColorForText setFill];
+				[themeColorForText setStroke];
+				[bezierPath fill];
+				[bezierPath setLineWidth: 1];
+				[bezierPath stroke];
+				
+			}
+		}
+	}
+	
+	// Full State
+	if (!isRecording && !isEmpty)
+	{
+		//// ShortcutLabel Drawing
+		{
+			NSString* textContent = self.label;
+			NSMutableParagraphStyle* shortcutLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
+			shortcutLabelStyle.alignment = NSCenterTextAlignment;
+			
+			// TODO: selected dynamically
+			NSColor *textColor = NSColor.controlTextColor;
+			
+			NSFont* font = [NSFont systemFontOfSize:NSFont.systemFontSize-1];
+			
+			NSDictionary* shortcutLabelFontAttributes = @{NSFontAttributeName:font, NSForegroundColorAttributeName:textColor, NSParagraphStyleAttributeName: shortcutLabelStyle};
+			
+			NSAttributedString *title = [[NSAttributedString alloc] initWithString:textContent attributes:shortcutLabelFontAttributes];
+			[title drawInRect:[self titleRectForBounds:bounds title:title]];
+		}
+		
+		
+		//// (x)-Button
+		{
+			//// Background Drawing
+			
+			// calculate bounding box of circle for background (right aligned with a 30% inset
+			CGRect xButtonRect = CGRectMake(bounds.origin.x + width - height, bounds.origin.y, bounds.size.height, bounds.size.height);
+			CGFloat inset = height * 0.15;	// 30% together, so 15% on each side
+			xButtonRect = CGRectInset(xButtonRect, inset, inset);
+			
+			NSBezierPath* xButtonBackgroundPath = [NSBezierPath bezierPathWithOvalInRect: xButtonRect];
+			[NSColor.controlColor setFill];
+			[xButtonBackgroundPath fill];
+			
+			// draw "x" with two lines
+			{
+				CGFloat inset = xButtonRect.size.height * 0.3;
+				xButtonRect = CGRectInset(xButtonRect, inset, inset);
+				
+				NSColor *xColor = NSColor.lightGrayColor;
+				
+				NSBezierPath* x2Path = NSBezierPath.bezierPath;
+				[x2Path moveToPoint: NSMakePoint(xButtonRect.origin.x, xButtonRect.origin.y)];
+				[x2Path lineToPoint: NSMakePoint(xButtonRect.origin.x + xButtonRect.size.width, xButtonRect.origin.y + xButtonRect.size.height)];
+				[x2Path moveToPoint: NSMakePoint(xButtonRect.origin.x + xButtonRect.size.width, xButtonRect.origin.y)];
+				[x2Path lineToPoint: NSMakePoint(xButtonRect.origin.x, xButtonRect.origin.y + xButtonRect.size.height)];
+				[xColor setStroke];
+				[x2Path setLineWidth: 1];
+				[x2Path stroke];
+			}
+		}
+	}
+}
+
+- (NSRect)titleRectForBounds:(NSRect)rect title:(NSAttributedString *)title
+{
+	if (!(!self.isRecording && [self _isEmpty]))
+	{
+		rect = NSMakeRect(NSMinX(rect), NSMinY(rect), NSWidth(rect) - NSHeight(rect), NSHeight(rect));
+	}
+	
+	float yInset = (rect.size.height - title.size.height)/2;
+	rect = NSInsetRect(rect, 3, yInset);
+	
+	return rect;
+}
+
+- (BOOL)_isEmpty
+{
+	BOOL isValidModifier = [self _validModifierFlags: self.modifiers.integerValue] >= 0;
+	
+	NSString *keyString = [SRKeyCodeTransformer.sharedTransformer transformedValue:self.keyCode];
+	BOOL stringForKeyCodeExists = keyString.length > 0;
+	
+	//NSLog(@"modifier valid: %d key code valid: %d", isValidModifier, stringForKeyCodeExists);
+	
+	return ( !isValidModifier || !stringForKeyCodeExists );
+}
+
+- (BOOL)_validModifierFlags:(NSUInteger)flags
+{
+	return (self.allowsEmptyModifierFlags ? YES : (((flags & NSCommandKeyMask) || (flags & NSAlternateKeyMask) || (flags & NSControlKeyMask) || (flags & NSShiftKeyMask) || (flags & NSFunctionKeyMask)) ? YES : NO));
+}
+
+- (NSNumber*)keyCode
+{
+	NSDictionary* keyComboDict = self.objectValue;
+	NSNumber *keyCode = keyComboDict[SRShortcutKeyCode];
+	return keyCode;
+}
+
+- (NSNumber*)modifiers
+{
+	NSDictionary* keyComboDict = self.objectValue;
+	NSNumber *modifiers = keyComboDict[SRShortcutModifierFlagsKey];
+	return modifiers;
+}
+
+#endif
 - (void)drawFocusRingMask
 {
     if (self.enabled && self.window.firstResponder == self)
