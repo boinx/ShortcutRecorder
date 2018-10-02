@@ -1484,7 +1484,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 	}
 	else
 	{
-		if ([self mouse:locationInView inRect:self.boinx_rightCornerButtonRect] && ((NSNumber*)(self.objectValue[SRShortcutKeyCode])).integerValue > 0)
+		if ([self mouse:locationInView inRect:self.boinx_rightCornerButtonRect] && ((NSNumber*)(self.objectValue[SRShortcutKeyCode])).integerValue >= 0)
 		{
 			_mouseTrackingButtonTag = _SRRecorderControlClearButtonTag;
 			[self setNeedsDisplayInRect:self.snapBackButtonRect];
