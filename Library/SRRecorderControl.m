@@ -1076,10 +1076,6 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 {
 	[self drawBackground:aDirtyRect];
 
-	NSView *view = self.superview;
-
-	//BOOL isActive = ([NSApp isActive] && [[view window] isMainWindow]);
-	
 	NSRect bounds = self.bounds;
 	
 	CGFloat width = bounds.size.width;
