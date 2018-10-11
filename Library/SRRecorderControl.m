@@ -38,7 +38,7 @@ static const CGFloat _SRRecorderControlShapeXRadius = 11.0;
 
 static const CGFloat _SRRecorderControlShapeYRadius = 12.0;
 
-static const CGFloat _SRRecorderControlHeight = 25.0;
+static const CGFloat _SRRecorderControlHeight = 21.0;
 
 static const CGFloat _SRRecorderControlBottomShadowHeightInPixels = 1.0;
 
