@@ -17,7 +17,7 @@
 #import "SRRecorderControl.h"
 #import "SRKeyCodeTransformer.h"
 #import "SRModifierFlagsTransformer.h"
-
+#import "SRCommon.h"
 
 NSString *const SRShortcutKeyCode = @"keyCode";
 
