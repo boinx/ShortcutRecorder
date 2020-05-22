@@ -1263,7 +1263,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 
 - (BOOL)_validModifierFlags:(NSUInteger)flags
 {
-	return (self.allowsEmptyModifierFlags ? YES : (((flags & NSCommandKeyMask) || (flags & NSAlternateKeyMask) || (flags & NSControlKeyMask) || (flags & NSShiftKeyMask) || (flags & NSFunctionKeyMask)) ? YES : NO));
+	return (self.allowsEmptyModifierFlags ? YES : (((flags & NSEventModifierFlagCommand) || (flags & NSAlternateKeyMask) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));
 }
 
 - (NSNumber*)keyCode
