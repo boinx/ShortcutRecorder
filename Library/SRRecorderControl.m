@@ -500,7 +500,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static NSDictionary *NormalAttributes = nil;
     dispatch_once(&OnceToken, ^{
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
-        p.alignment = NSCenterTextAlignment;
+        p.alignment = NSTextAlignmentCenter;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
         p.baseWritingDirection = NSWritingDirectionLeftToRight;
         NormalAttributes = @{
@@ -518,7 +518,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static NSDictionary *RecordingAttributes = nil;
     dispatch_once(&OnceToken, ^{
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
-        p.alignment = NSCenterTextAlignment;
+        p.alignment = NSTextAlignmentCenter;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
         p.baseWritingDirection = NSWritingDirectionLeftToRight;
         RecordingAttributes = @{
@@ -536,7 +536,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static NSDictionary *DisabledAttributes = nil;
     dispatch_once(&OnceToken, ^{
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
-        p.alignment = NSCenterTextAlignment;
+        p.alignment = NSTextAlignmentCenter;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
         p.baseWritingDirection = NSWritingDirectionLeftToRight;
         DisabledAttributes = @{
@@ -1095,7 +1095,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 		{
 			NSString* textContent = @"Record Shortcut";
 			NSMutableParagraphStyle* recordLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
-			recordLabelStyle.alignment = NSCenterTextAlignment;
+			recordLabelStyle.alignment = NSTextAlignmentCenter;
 			
 			
 			NSFont* font = [NSFont systemFontOfSize:NSFont.systemFontSize-(bounds.size.width > 100 ? 2 : 4)];
@@ -1115,7 +1115,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 		{
 			NSString* textContent = SRLoc(@"Type Shortcut");
 			NSMutableParagraphStyle* recordingLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
-			recordingLabelStyle.alignment = NSCenterTextAlignment;
+			recordingLabelStyle.alignment = NSTextAlignmentCenter;
 			
 			NSFont* font = [NSFont systemFontOfSize:NSFont.systemFontSize-(bounds.size.width > 100 ? 2 : 4)];
 			
@@ -1189,7 +1189,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 		{
 			NSString* textContent = self.label;
 			NSMutableParagraphStyle* shortcutLabelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
-			shortcutLabelStyle.alignment = NSCenterTextAlignment;
+			shortcutLabelStyle.alignment = NSTextAlignmentCenter;
 			
 			// TODO: selected dynamically
 			NSColor *textColor = NSColor.controlTextColor;
@@ -1263,7 +1263,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
 
 - (BOOL)_validModifierFlags:(NSUInteger)flags
 {
-	return (self.allowsEmptyModifierFlags ? YES : (((flags & NSEventModifierFlagCommand) || (flags & NSAlternateKeyMask) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));
+	return (self.allowsEmptyModifierFlags ? YES : (((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSEventModifierFlagFunction)) ? YES : NO));
 }
 
 - (NSNumber*)keyCode
