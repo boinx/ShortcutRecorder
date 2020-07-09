@@ -86,11 +86,7 @@
 		0D6B246D180304DE00CE1142 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D6B2487180304DE00CE1142 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0D6B249C180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		0D6B249E180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IKCodeAutoLayoutWindowController.xib; sourceTree = "<group>"; };
-		0D6B24A0180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IKIBAutoLayoutWindowController.xib; sourceTree = "<group>"; };
-		0D6B24A2180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IKIBAutoresizingMasksWindowController.xib; sourceTree = "<group>"; };
 		0D6B24A4180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0D6B24A6180304FA00CE1142 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0D6B24A7180304FA00CE1142 /* IKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKAppDelegate.h; sourceTree = "<group>"; };
 		0D6B24A8180304FA00CE1142 /* IKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKAppDelegate.m; sourceTree = "<group>"; };
 		0D6B24A9180304FA00CE1142 /* IKCodeAutoLayoutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKCodeAutoLayoutWindowController.h; sourceTree = "<group>"; };
@@ -152,6 +148,10 @@
 		E2BE924C16ABEFE400827E8C /* SRKeyEquivalentTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRKeyEquivalentTransformer.m; path = Library/SRKeyEquivalentTransformer.m; sourceTree = "<group>"; };
 		E2BE925016ABF84100827E8C /* SRKeyEquivalentModifierMaskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRKeyEquivalentModifierMaskTransformer.h; path = Library/SRKeyEquivalentModifierMaskTransformer.h; sourceTree = "<group>"; };
 		E2BE925116ABF84200827E8C /* SRKeyEquivalentModifierMaskTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRKeyEquivalentModifierMaskTransformer.m; path = Library/SRKeyEquivalentModifierMaskTransformer.m; sourceTree = "<group>"; };
+		F65D5BEF24B5F6B000DCAD7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IKCodeAutoLayoutWindowController.xib; sourceTree = "<group>"; };
+		F65D5BF024B5F6B000DCAD7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IKIBAutoLayoutWindowController.xib; sourceTree = "<group>"; };
+		F65D5BF124B5F6B000DCAD7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IKIBAutoresizingMasksWindowController.xib; sourceTree = "<group>"; };
+		F65D5BF224B5F6B000DCAD7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,19 +429,14 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1200;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShortcutRecorder" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				sv,
-				Dutch,
 				ru,
 				de,
 				el,
@@ -557,7 +552,7 @@
 		0D6B249D180304FA00CE1142 /* IKCodeAutoLayoutWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0D6B249E180304FA00CE1142 /* en */,
+				F65D5BEF24B5F6B000DCAD7A /* Base */,
 			);
 			name = IKCodeAutoLayoutWindowController.xib;
 			sourceTree = "<group>";
@@ -565,7 +560,7 @@
 		0D6B249F180304FA00CE1142 /* IKIBAutoLayoutWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0D6B24A0180304FA00CE1142 /* en */,
+				F65D5BF024B5F6B000DCAD7A /* Base */,
 			);
 			name = IKIBAutoLayoutWindowController.xib;
 			sourceTree = "<group>";
@@ -573,7 +568,7 @@
 		0D6B24A1180304FA00CE1142 /* IKIBAutoresizingMasksWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0D6B24A2180304FA00CE1142 /* en */,
+				F65D5BF124B5F6B000DCAD7A /* Base */,
 			);
 			name = IKIBAutoresizingMasksWindowController.xib;
 			sourceTree = "<group>";
@@ -589,7 +584,7 @@
 		0D6B24A5180304FA00CE1142 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0D6B24A6180304FA00CE1142 /* en */,
+				F65D5BF224B5F6B000DCAD7A /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -717,6 +712,7 @@
 				GCC_PREFIX_HEADER = Library/Prefix.pch;
 				INFOPLIST_FILE = Library/Info.plist;
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kulakov.ShortcutRecorder;
 				PRODUCT_NAME = ShortcutRecorder;
 				PROVISIONING_PROFILE = "";
@@ -737,6 +733,7 @@
 				GCC_PREFIX_HEADER = Library/Prefix.pch;
 				INFOPLIST_FILE = Library/Info.plist;
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kulakov.ShortcutRecorder;
 				PRODUCT_NAME = ShortcutRecorder;
 				PROVISIONING_PROFILE = "";
@@ -761,6 +758,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -808,6 +806,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -850,7 +849,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = PTHotKey/Info.plist;
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -876,7 +875,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = PTHotKey/Info.plist;
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
